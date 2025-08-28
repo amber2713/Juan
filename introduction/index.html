@@ -711,12 +711,20 @@
                 yesBtn.style.transform = 'scale(1)';
                 noClickCount = 0;
                 
+                // 解锁过去路牌
+                pastUnlocked = true;
+                pastSign.classList.remove('disabled');
+                
                 // 返回主页面
                 switchPage(nowPage, mainPage, 'fade-in');
             } else if (pastPage.style.display === 'block') {
                 switchPage(pastPage, mainPage, 'fade-in');
                 pastUnlocked = true;
                 pastSign.classList.remove('disabled');
+                
+                // 解锁将来路牌
+                futureUnlocked = true;
+                futureSign.classList.remove('disabled');
             } else if (futurePage.style.display === 'block') {
                 switchPage(futurePage, mainPage, 'fade-in');
                 futureUnlocked = true;
@@ -731,13 +739,19 @@
         
         // 前往"过去"页面
         function goToPast() {
-            if (!pastUnlocked) return;
+            if (!pastUnlocked) {
+                showMessage('请先探索"现在"再探索"过去"');
+                return;
+            }
             switchPage(mainPage, pastPage, 'slide-in-left');
         }
         
         // 前往"将来"页面
         function goToFuture() {
-            if (!futureUnlocked) return;
+            if (!futureUnlocked) {
+                showMessage('请先探索"过去"再探索"将来"');
+                return;
+            }
             switchPage(mainPage, futurePage, 'flip-in');
             startTyping();
         }
