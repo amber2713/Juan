@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>开学自我介绍 - 石明娟</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #e0f7fa 0%, #bbdefb 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            color: #37474f;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 2rem auto;
+            position: relative;
+        }
+        
+        /* 主页面样式 */
+        #main-page {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .page-title {
+            font-size: 2.5rem;
+            color: #5e35b1;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .scene {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            margin: 2rem 0;
+        }
+        
+        .girl-character {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 200px;
+            background: url('images/A.jpg') center/cover;
+            border-radius: 50% 50% 0 0;
+            z-index: 10;
+        }
+        
+        .path {
+            position: absolute;
+            bottom: 0;
+            width: 100px;
+            height: 250px;
+            background: #8d6e63;
+            clip-path: polygon(0% 100%, 100% 100%, 80% 0%, 20% 0%);
+        }
+        
+        .path-left {
+            left: 25%;
+            transform: translateX(-50%) rotate(-5deg);
+        }
+        
+        .path-center {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .path-right {
+            left: 75%;
+            transform: translateX(-50%) rotate(5deg);
+        }
+        
+        .sign {
+            position: absolute;
+            top: 100px;
+            width: 100px;
+            height: 120px;
+            background: #ffd54f;
+            border: 3px solid #5d4037;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #5d4037;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 20;
+        }
+        
+        .sign-left {
+            left: 25%;
+            transform: translateX(-50%) rotate(-5deg);
+        }
+        
+        .sign-center {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .sign-right {
+            left: 75%;
+            transform: translateX(-50%) rotate(5deg);
+        }
+        
+        .sign:hover {
+            transform: translateX(-50%) scale(1.1) rotate(0deg);
+            box-shadow: 0 0 15px rgba(255, 213, 79, 0.8);
+        }
+        
+        .sign.disabled {
+            filter: grayscale(0.8);
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+        
+        .sign.disabled:hover {
+            transform: translateX(-50%) rotate(5deg);
+            box-shadow: none;
+        }
+        
+        /* 现在页面样式 */
+        #now-page {
+            display: none;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 2rem;
+            min-height: 600px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .now-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .image-container {
+            flex: 1;
+            min-width: 300px;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .image-container img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: all 0.8s ease;
+        }
+        
+        .interaction-area {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .question {
+            font-size: 1.8rem;
+            color: #5e35b1;
+            text-align: center;
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .btn {
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+        
+        .btn-yes {
+            background: #4caf50;
+            color: white;
+        }
+        
+        .btn-no {
+            background: #f44336;
+            color: white;
+        }
+        
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+            font-size: 1.5rem;
+            display: none;
+            z-index: 100;
+        }
+        
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #5e35b1;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .back-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        /* 过去页面样式 */
+        #past-page {
+            display: none;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 2rem;
+            min-height: 600px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .input-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            height: 400px;
+        }
+        
+        .name-input {
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            border: 2px solid #5e35b1;
+            border-radius: 50px;
+            width: 300px;
+            text-align: center;
+        }
+        
+        .photos-container {
+            display: none;
+            flex-direction: row;
+            gap: 2rem;
+            height: 400px;
+        }
+        
+        .text-content {
+            flex: 1;
+            padding: 1rem;
+            background: #f5f5f5;
+            border-radius: 10px;
+            overflow-y: auto;
+        }
+        
+        .photo-gallery {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+        
+        .gallery-img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+        
+        .gallery-img.active {
+            opacity: 1;
+        }
+        
+        /* 将来页面样式 */
+        #future-page {
+            display: none;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 2rem;
+            min-height: 600px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+            background: url('images/E.jpg') center/cover;
+        }
+        
+        .future-content {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .typing-text {
+            min-height: 200px;
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+        
+        .page-arrow {
+            font-size: 2rem;
+            cursor: pointer;
+            color: #5e35b1;
+            transition: all 0.3s ease;
+        }
+        
+        .page-arrow:hover {
+            transform: scale(1.2);
+        }
+        
+        .pass-btn {
+            display: block;
+            margin-left: auto;
+            margin-top: 1rem;
+            padding: 0.5rem 1.5rem;
+            background: #5e35b1;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .pass-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .like-container {
+            text-align: center;
+            display: none;
+        }
+        
+        .like-btn {
+            font-size: 3rem;
+            color: #e91e63;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .like-btn:hover {
+            transform: scale(1.2);
+        }
+        
+        .like-count {
+            font-size: 2rem;
+            margin-top: 1rem;
+            color: #e91e63;
+        }
+        
+        /* 动画类 */
+        .fade-in {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+        
+        .fade-out {
+            opacity: 0 !important;
+            transform: translateY(20px) !important;
+        }
+        
+        .slide-in-right {
+            animation: slideInRight 0.8s ease forwards;
+        }
+        
+        .slide-in-left {
+            animation: slideInLeft 0.8s ease forwards;
+        }
+        
+        .flip-in {
+            animation: flipIn 1s ease forwards;
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes flipIn {
+            from {
+                opacity: 0;
+                transform: perspective(1000px) rotateY(90deg);
+            }
+            to {
+                opacity: 1;
+                transform: perspective(1000px) rotateY(0);
+            }
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .now-container {
+                flex-direction: column;
+            }
+            
+            .path, .sign {
+                transform: none !important;
+            }
+            
+            .path-left, .sign-left {
+                left: 20%;
+            }
+            
+            .path-right, .sign-right {
+                left: 80%;
+            }
+            
+            .photos-container {
+                flex-direction: column;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 主页面 -->
+        <div id="main-page" class="fade-in">
+            <h1 class="page-title">欢迎认识我</h1>
+            <div class="scene">
+                <div class="girl-character"></div>
+                <div class="path path-left"></div>
+                <div class="path path-center"></div>
+                <div class="path path-right"></div>
+                <div class="sign sign-left disabled" onclick="goToPast()">过去</div>
+                <div class="sign sign-center" onclick="goToNow()">现在</div>
+                <div class="sign sign-right disabled" onclick="goToFuture()">将来</div>
+            </div>
+            <p>点击路牌了解更多关于我的故事</p>
+        </div>
+        
+        <!-- 现在页面 -->
+        <div id="now-page">
+            <div class="now-container">
+                <div class="image-container">
+                    <img src="images/A.jpg" alt="我的照片" id="now-image">
+                </div>
+                <div class="interaction-area">
+                    <h2 class="question">你想认识我吗？</h2>
+                    <div class="buttons">
+                        <button class="btn btn-yes" onclick="handleYes()">想</button>
+                        <button class="btn btn-no" onclick="handleNo()">不想</button>
+                    </div>
+                </div>
+            </div>
+            <div class="back-btn" onclick="goBackToMain()">
+                <i class="fas fa-arrow-left"></i>
+            </div>
+        </div>
+        
+        <!-- 过去页面 -->
+        <div id="past-page">
+            <div class="input-container" id="name-input-container">
+                <h2>我叫什么名字？</h2>
+                <input type="text" class="name-input" id="name-input" placeholder="请输入我的名字">
+                <button class="btn" onclick="checkName()">确认</button>
+            </div>
+            
+            <div class="photos-container" id="photos-container">
+                <div class="text-content">
+                    <p>这里将展示我的过去故事...</p>
+                </div>
+                <div class="photo-gallery">
+                    <img src="images/B.jpg" class="gallery-img" alt="过去照片1">
+                    <img src="images/C.jpg" class="gallery-img" alt="过去照片2">
+                    <img src="images/D.jpg" class="gallery-img" alt="过去照片3">
+                </div>
+            </div>
+            <div class="back-btn" onclick="goBackToMain()">
+                <i class="fas fa-arrow-left"></i>
+            </div>
+        </div>
+        
+        <!-- 将来页面 -->
+        <div id="future-page">
+            <div class="future-content">
+                <div class="typing-text" id="typing-text"></div>
+                
+                <div class="pagination" id="pagination" style="display: none;">
+                    <div class="page-arrow" onclick="changePage(-1)">
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
+                    <div class="page-arrow" onclick="changePage(1)">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                </div>
+                
+                <button class="pass-btn" id="pass-btn" style="display: none;" onclick="showLikeInterface()">Pass</button>
+                
+                <div class="like-container" id="like-container">
+                    <div class="like-btn" onclick="like()">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="like-count" id="like-count">0</div>
+                </div>
+            </div>
+            <div class="back-btn" onclick="goBackToMain()">
+                <i class="fas fa-arrow-left"></i>
+            </div>
+        </div>
+    </div>
+    
+    <div class="message" id="message"></div>
+
+    <script>
+        // 页面元素
+        const mainPage = document.getElementById('main-page');
+        const nowPage = document.getElementById('now-page');
+        const pastPage = document.getElementById('past-page');
+        const futurePage = document.getElementById('future-page');
+        
+        // 路牌元素
+        const pastSign = document.querySelector('.sign-left');
+        const futureSign = document.querySelector('.sign-right');
+        
+        // 交互状态
+        let noClickCount = 0;
+        let pastUnlocked = false;
+        let futureUnlocked = false;
+        let currentPage = 0;
+        let likeCount = 0;
+        
+        const pages = [
+            "刚刚是正经的说",
+            "现在是更正经的事",
+            "我想要在武大认识好多朋友，男女通吃的那种",
+            "我想要和一群朋友拍很多照片和视频",
+            "我想要老了之后，想到武大第一个想到的是我的朋友们"
+        ];
+        
+        // 显示消息
+        function showMessage(text) {
+            const message = document.getElementById('message');
+            message.textContent = text;
+            message.style.display = 'block';
+            
+            setTimeout(() => {
+                message.style.display = 'none';
+            }, 1500);
+        }
+        
+        // 页面切换函数
+        function switchPage(from, to, animation) {
+            from.classList.add('fade-out');
+            
+            setTimeout(() => {
+                from.style.display = 'none';
+                to.style.display = 'block';
+                
+                setTimeout(() => {
+                    to.classList.add(animation);
+                }, 50);
+            }, 800);
+        }
+        
+        // 返回到主页面
+        function goBackToMain() {
+            if (nowPage.style.display === 'block') {
+                switchPage(nowPage, mainPage, 'fade-in');
+            } else if (pastPage.style.display === 'block') {
+                switchPage(pastPage, mainPage, 'fade-in');
+                pastUnlocked = true;
+                pastSign.classList.remove('disabled');
+            } else if (futurePage.style.display === 'block') {
+                switchPage(futurePage, mainPage, 'fade-in');
+                futureUnlocked = true;
+                futureSign.classList.remove('disabled');
+            }
+        }
+        
+        // 前往"现在"页面
+        function goToNow() {
+            switchPage(mainPage, nowPage, 'slide-in-right');
+        }
+        
+        // 前往"过去"页面
+        function goToPast() {
+            if (!pastUnlocked) return;
+            switchPage(mainPage, pastPage, 'slide-in-left');
+        }
+        
+        // 前往"将来"页面
+        function goToFuture() {
+            if (!futureUnlocked) return;
+            switchPage(mainPage, futurePage, 'flip-in');
+            startTyping();
+        }
+        
+        // 处理"想"按钮点击
+        function handleYes() {
+            const image = document.getElementById('now-image');
+            image.style.transform = 'scale(1.2)';
+            image.style.filter = 'brightness(1.2)';
+            
+            showMessage('我也很想认识大家！');
+        }
+        
+        // 处理"不想"按钮点击
+        function handleNo() {
+            const noBtn = document.querySelector('.btn-no');
+            const yesBtn = document.querySelector('.btn-yes');
+            
+            noClickCount++;
+            
+            if (noClickCount === 1) {
+                noBtn.style.transform = 'scale(0.9)';
+                showMessage('真的吗？');
+            } else if (noClickCount === 2) {
+                noBtn.style.transform = 'scale(0.8)';
+                yesBtn.style.transform = 'scale(1.1)';
+                showMessage('你再想想');
+            } else if (noClickCount === 3) {
+                noBtn.style.transform = 'scale(0.1)';
+                noBtn.style.opacity = '0';
+                yesBtn.style.transform = 'scale(1.3)';
+                showMessage('再给你一次机会');
+                noBtn.disabled = true;
+            }
+        }
+        
+        // 检查名字输入
+        function checkName() {
+            const nameInput = document.getElementById('name-input');
+            const inputContainer = document.getElementById('name-input-container');
+            const photosContainer = document.getElementById('photos-container');
+            
+            if (nameInput.value === '石明娟') {
+                inputContainer.style.display = 'none';
+                photosContainer.style.display = 'flex';
+                
+                // 启动照片轮播
+                startPhotoCarousel();
+            } else {
+                showMessage('再试试？');
+            }
+        }
+        
+        // 照片轮播
+        function startPhotoCarousel() {
+            const images = document.querySelectorAll('.gallery-img');
+            let currentIndex = 0;
+            
+            // 显示第一张图片
+            images[currentIndex].classList.add('active');
+            
+            const interval = setInterval(() => {
+                images[currentIndex].classList.remove('active');
+                
+                currentIndex++;
+                if (currentIndex >= images.length) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        goBackToMain();
+                    }, 1000);
+                    return;
+                }
+                
+                images[currentIndex].classList.add('active');
+            }, 2500);
+        }
+        
+        // 开始打字效果
+        function startTyping() {
+            const typingText = document.getElementById('typing-text');
+            typingText.innerHTML = '';
+            
+            const text = "大家好，我是石明娟，很高兴在这里与大家相遇。我期待在未来的日子里，能够与大家一起学习、一起成长，共同创造美好的大学回忆。";
+            let index = 0;
+            
+            function type() {
+                if (index < text.length) {
+                    typingText.innerHTML += text.charAt(index);
+                    index++;
+                    setTimeout(type, 50);
+                } else {
+                    // 显示分页和pass按钮
+                    document.getElementById('pagination').style.display = 'flex';
+                    document.getElementById('pass-btn').style.display = 'block';
+                    showPage(0);
+                }
+            }
+            
+            type();
+        }
+        
+        // 显示特定页面内容
+        function showPage(pageIndex) {
+            const typingText = document.getElementById('typing-text');
+            typingText.innerHTML = pages[pageIndex];
+        }
+        
+        // 切换页面
+        function changePage(direction) {
+            currentPage += direction;
+            
+            if (currentPage < 0) currentPage = 0;
+            if (currentPage >= pages.length) currentPage = pages.length - 1;
+            
+            showPage(currentPage);
+        }
+        
+        // 显示点赞界面
+        function showLikeInterface() {
+            document.getElementById('pagination').style.display = 'none';
+            document.getElementById('pass-btn').style.display = 'none';
+            document.getElementById('like-container').style.display = 'block';
+        }
+        
+        // 点赞功能
+        function like() {
+            likeCount++;
+            const likeCountElement = document.getElementById('like-count');
+            
+            // 添加动画效果
+            likeCountElement.style.transform = 'scale(1.5)';
+            setTimeout(() => {
+                likeCountElement.style.transform = 'scale(1)';
+            }, 300);
+            
+            likeCountElement.textContent = likeCount;
+        }
+    </script>
+</body>
+</html>
