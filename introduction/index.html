@@ -61,6 +61,25 @@
             margin: 2rem 0;
         }
         
+        .girl-character {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 200px;
+            background: #ffb7c5;
+            border-radius: 50% 50% 0 0;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #5d4037;
+            font-size: 0.9rem;
+            text-align: center;
+            padding-top: 20px;
+        }
+        
         .path {
             position: absolute;
             bottom: 0;
@@ -152,6 +171,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 2rem;
+            position: relative;
         }
         
         .image-container {
@@ -160,13 +180,30 @@
             overflow: hidden;
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 1s ease;
         }
         
         .image-container img {
             width: 100%;
             height: 400px;
             object-fit: cover;
-            transition: all 0.8s ease;
+            transition: all 1s ease;
+            filter: blur(10px); /* 初始模糊效果 */
+        }
+        
+        .image-container.center-mode {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 100;
+            width: 80%;
+            max-width: 600px;
+        }
+        
+        .image-container.center-mode img {
+            filter: blur(0); /* 清晰效果 */
+            height: 500px;
         }
         
         .interaction-area {
@@ -244,10 +281,30 @@
             cursor: pointer;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
+            z-index: 101;
         }
         
         .back-btn:hover {
             transform: scale(1.1);
+        }
+        
+        .text-overlay {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 2rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            opacity: 0;
+            transition: opacity 1s ease;
+            z-index: 102;
+            text-align: center;
+            width: 80%;
+        }
+        
+        .text-overlay.show {
+            opacity: 1;
         }
         
         /* 过去页面样式 */
@@ -479,6 +536,10 @@
                 flex-direction: column;
                 height: auto;
             }
+            
+            .image-container.center-mode {
+                width: 95%;
+            }
         }
     </style>
 </head>
@@ -488,7 +549,9 @@
         <div id="main-page" class="fade-in">
             <h1 class="page-title">欢迎认识我</h1>
             <div class="scene">
-                <div class="girl-character"></div>
+                <div class="girl-character">
+                    我在这里<br>等你探索
+                </div>
                 <div class="path path-left"></div>
                 <div class="path path-center"></div>
                 <div class="path path-right"></div>
@@ -502,7 +565,7 @@
         <!-- 现在页面 -->
         <div id="now-page">
             <div class="now-container">
-                <div class="image-container">
+                <div class="image-container" id="now-image-container">
                     <img src="images/A.jpg" alt="我的照片" id="now-image">
                 </div>
                 <div class="interaction-area">
@@ -513,6 +576,7 @@
                     </div>
                 </div>
             </div>
+            <div class="text-overlay" id="text-overlay">我也很想认识大家！</div>
             <div class="back-btn" onclick="goBackToMain()">
                 <i class="fas fa-arrow-left"></i>
             </div>
@@ -624,29 +688,29 @@
         }
         
         // 返回到主页面
-       function goBackToMain() {
-    if (nowPage.style.display === 'block') {
-        // 添加现在页面返回主页面的处理
-        nowPage.classList.remove('slide-in-right');
-        nowPage.classList.add('fade-out');
-        
-        setTimeout(() => {
-            nowPage.style.display = 'none';
-            mainPage.style.display = 'block';
-            setTimeout(() => {
-                mainPage.classList.add('fade-in');
-            }, 50);
-        }, 800);
-    } else if (pastPage.style.display === 'block') {
-        switchPage(pastPage, mainPage, 'fade-in');
-        pastUnlocked = true;
-        pastSign.classList.remove('disabled');
-    } else if (futurePage.style.display === 'block') {
-        switchPage(futurePage, mainPage, 'fade-in');
-        futureUnlocked = true;
-        futureSign.classList.remove('disabled');
-    }
-}
+        function goBackToMain() {
+            if (nowPage.style.display === 'block') {
+                // 重置现在页面的状态
+                const imageContainer = document.getElementById('now-image-container');
+                const nowImage = document.getElementById('now-image');
+                const textOverlay = document.getElementById('text-overlay');
+                
+                imageContainer.classList.remove('center-mode');
+                nowImage.style.filter = 'blur(10px)';
+                textOverlay.classList.remove('show');
+                
+                // 返回主页面
+                switchPage(nowPage, mainPage, 'fade-in');
+            } else if (pastPage.style.display === 'block') {
+                switchPage(pastPage, mainPage, 'fade-in');
+                pastUnlocked = true;
+                pastSign.classList.remove('disabled');
+            } else if (futurePage.style.display === 'block') {
+                switchPage(futurePage, mainPage, 'fade-in');
+                futureUnlocked = true;
+                futureSign.classList.remove('disabled');
+            }
+        }
         
         // 前往"现在"页面
         function goToNow() {
@@ -668,35 +732,43 @@
         
         // 处理"想"按钮点击
         function handleYes() {
-            const image = document.getElementById('now-image');
-            image.style.transform = 'scale(1.2)';
-            image.style.filter = 'brightness(1.2)';
+            const imageContainer = document.getElementById('now-image-container');
+            const nowImage = document.getElementById('now-image');
+            const textOverlay = document.getElementById('text-overlay');
             
-            showMessage('我也很想认识大家！');
+            // 图片变清晰、放大并移动到中央
+            imageContainer.classList.add('center-mode');
+            nowImage.style.filter = 'blur(0)';
+            
+            // 显示文字
+            setTimeout(() => {
+                textOverlay.classList.add('show');
+            }, 1000);
         }
         
         // 处理"不想"按钮点击
         function handleNo() {
-    const noBtn = document.querySelector('.btn-no');
-    const yesBtn = document.querySelector('.btn-yes');
-    
-    noClickCount++;
-    
-    if (noClickCount === 1) {
-        noBtn.style.transform = 'scale(0.7)'; // 更夸张的缩小
-        showMessage('真的吗？');
-    } else if (noClickCount === 2) {
-        noBtn.style.transform = 'scale(0.5)'; // 更夸张的缩小
-        yesBtn.style.transform = 'scale(1.5)'; // 更夸张的放大
-        showMessage('你再想想');
-    } else if (noClickCount === 3) {
-        noBtn.style.transform = 'scale(0.1)'; // 几乎消失
-        noBtn.style.opacity = '0';
-        yesBtn.style.transform = 'scale(2.0)'; // 非常大的放大
-        showMessage('再给你一次机会');
-        noBtn.disabled = true;
-    }
-}
+            const noBtn = document.querySelector('.btn-no');
+            const yesBtn = document.querySelector('.btn-yes');
+            
+            noClickCount++;
+            
+            if (noClickCount === 1) {
+                noBtn.style.transform = 'scale(0.7)';
+                yesBtn.style.transform = 'scale(1.5)
+                showMessage('真的吗？');
+            } else if (noClickCount === 2) {
+                noBtn.style.transform = 'scale(0.5)';
+                yesBtn.style.transform = 'scale(2.0)';
+                showMessage('你再想想');
+            } else if (noClickCount === 3) {
+                noBtn.style.transform = 'scale(0.1)';
+                noBtn.style.opacity = '0';
+                yesBtn.style.transform = 'scale(2.5)';
+                showMessage('再给你一次机会');
+                noBtn.disabled = true;
+            }
+        }
         
         // 检查名字输入
         function checkName() {
