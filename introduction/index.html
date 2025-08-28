@@ -636,19 +636,29 @@
         }
         
         // 返回到主页面
-        function goBackToMain() {
-            if (nowPage.style.display === 'block') {
-                switchPage(nowPage, mainPage, 'fade-in');
-            } else if (pastPage.style.display === 'block') {
-                switchPage(pastPage, mainPage, 'fade-in');
-                pastUnlocked = true;
-                pastSign.classList.remove('disabled');
-            } else if (futurePage.style.display === 'block') {
-                switchPage(futurePage, mainPage, 'fade-in');
-                futureUnlocked = true;
-                futureSign.classList.remove('disabled');
-            }
-        }
+       function goBackToMain() {
+    if (nowPage.style.display === 'block') {
+        // 添加现在页面返回主页面的处理
+        nowPage.classList.remove('slide-in-right');
+        nowPage.classList.add('fade-out');
+        
+        setTimeout(() => {
+            nowPage.style.display = 'none';
+            mainPage.style.display = 'block';
+            setTimeout(() => {
+                mainPage.classList.add('fade-in');
+            }, 50);
+        }, 800);
+    } else if (pastPage.style.display === 'block') {
+        switchPage(pastPage, mainPage, 'fade-in');
+        pastUnlocked = true;
+        pastSign.classList.remove('disabled');
+    } else if (futurePage.style.display === 'block') {
+        switchPage(futurePage, mainPage, 'fade-in');
+        futureUnlocked = true;
+        futureSign.classList.remove('disabled');
+    }
+}
         
         // 前往"现在"页面
         function goToNow() {
@@ -679,26 +689,26 @@
         
         // 处理"不想"按钮点击
         function handleNo() {
-            const noBtn = document.querySelector('.btn-no');
-            const yesBtn = document.querySelector('.btn-yes');
-            
-            noClickCount++;
-            
-            if (noClickCount === 1) {
-                noBtn.style.transform = 'scale(0.9)';
-                showMessage('真的吗？');
-            } else if (noClickCount === 2) {
-                noBtn.style.transform = 'scale(0.8)';
-                yesBtn.style.transform = 'scale(1.1)';
-                showMessage('你再想想');
-            } else if (noClickCount === 3) {
-                noBtn.style.transform = 'scale(0.1)';
-                noBtn.style.opacity = '0';
-                yesBtn.style.transform = 'scale(1.3)';
-                showMessage('再给你一次机会');
-                noBtn.disabled = true;
-            }
-        }
+    const noBtn = document.querySelector('.btn-no');
+    const yesBtn = document.querySelector('.btn-yes');
+    
+    noClickCount++;
+    
+    if (noClickCount === 1) {
+        noBtn.style.transform = 'scale(0.7)'; // 更夸张的缩小
+        showMessage('真的吗？');
+    } else if (noClickCount === 2) {
+        noBtn.style.transform = 'scale(0.5)'; // 更夸张的缩小
+        yesBtn.style.transform = 'scale(1.5)'; // 更夸张的放大
+        showMessage('你再想想');
+    } else if (noClickCount === 3) {
+        noBtn.style.transform = 'scale(0.1)'; // 几乎消失
+        noBtn.style.opacity = '0';
+        yesBtn.style.transform = 'scale(2.0)'; // 非常大的放大
+        showMessage('再给你一次机会');
+        noBtn.disabled = true;
+    }
+}
         
         // 检查名字输入
         function checkName() {
