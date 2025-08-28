@@ -681,6 +681,9 @@
                 from.style.display = 'none';
                 to.style.display = 'block';
                 
+                // 移除可能存在的动画类
+                to.classList.remove('fade-out', 'slide-in-right', 'slide-in-left', 'flip-in');
+                
                 setTimeout(() => {
                     to.classList.add(animation);
                 }, 50);
@@ -698,6 +701,15 @@
                 imageContainer.classList.remove('center-mode');
                 nowImage.style.filter = 'blur(10px)';
                 textOverlay.classList.remove('show');
+                
+                // 重置按钮状态
+                const noBtn = document.querySelector('.btn-no');
+                const yesBtn = document.querySelector('.btn-yes');
+                noBtn.style.transform = 'scale(1)';
+                noBtn.style.opacity = '1';
+                noBtn.disabled = false;
+                yesBtn.style.transform = 'scale(1)';
+                noClickCount = 0;
                 
                 // 返回主页面
                 switchPage(nowPage, mainPage, 'fade-in');
@@ -755,16 +767,15 @@
             
             if (noClickCount === 1) {
                 noBtn.style.transform = 'scale(0.7)';
-                yesBtn.style.transform = 'scale(1.5)
                 showMessage('真的吗？');
             } else if (noClickCount === 2) {
                 noBtn.style.transform = 'scale(0.5)';
-                yesBtn.style.transform = 'scale(2.0)';
+                yesBtn.style.transform = 'scale(1.5)';
                 showMessage('你再想想');
             } else if (noClickCount === 3) {
                 noBtn.style.transform = 'scale(0.1)';
                 noBtn.style.opacity = '0';
-                yesBtn.style.transform = 'scale(2.5)';
+                yesBtn.style.transform = 'scale(2.0)';
                 showMessage('再给你一次机会');
                 noBtn.disabled = true;
             }
@@ -793,9 +804,16 @@
             let currentIndex = 0;
             
             // 显示第一张图片
-            images[currentIndex].classList.add('active');
+            if (images.length > 0) {
+                images[currentIndex].classList.add('active');
+            }
             
             const interval = setInterval(() => {
+                if (images.length === 0) {
+                    clearInterval(interval);
+                    return;
+                }
+                
                 images[currentIndex].classList.remove('active');
                 
                 currentIndex++;
@@ -871,6 +889,18 @@
             
             likeCountElement.textContent = likeCount;
         }
+        
+        // 初始化页面
+        window.onload = function() {
+            // 确保主页面正确显示
+            mainPage.style.display = 'block';
+            mainPage.classList.add('fade-in');
+            
+            // 隐藏其他页面
+            nowPage.style.display = 'none';
+            pastPage.style.display = 'none';
+            futurePage.style.display = 'none';
+        };
     </script>
 </body>
 </html>
