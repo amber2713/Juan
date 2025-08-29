@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>开学自我介绍 - 石明娟</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=ZCOOL+QingKe+HuangYou&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Helvetica Neue', Arial, sans-serif;
         }
         
         body {
@@ -21,6 +21,7 @@
             align-items: center;
             overflow: hidden;
             color: #37474f;
+            font-family: 'ZCOOL XiaoWei', serif;
         }
         
         .container {
@@ -48,10 +49,12 @@
         }
         
         .page-title {
-            font-size: 2.5rem;
+            font-size: 3rem;
             color: #5e35b1;
             margin-bottom: 2rem;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            font-family: 'Ma Shan Zheng', cursive;
+            letter-spacing: 2px;
         }
         
         .scene {
@@ -75,9 +78,10 @@
             justify-content: center;
             align-items: center;
             color: #5d4037;
-            font-size: 0.9rem;
+            font-size: 1.1rem;
             text-align: center;
             padding-top: 20px;
+            font-family: 'ZCOOL QingKe HuangYou', cursive;
         }
         
         .path {
@@ -115,12 +119,13 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             font-weight: bold;
             color: #5d4037;
             cursor: pointer;
             transition: all 0.3s ease;
             z-index: 20;
+            font-family: 'ZCOOL QingKe HuangYou', cursive;
         }
         
         .sign-left {
@@ -188,7 +193,7 @@
             height: 400px;
             object-fit: cover;
             transition: all 1s ease;
-            filter: blur(10px); /* 初始模糊效果 */
+            filter: blur(10px);
         }
         
         .image-container.center-mode {
@@ -202,7 +207,7 @@
         }
         
         .image-container.center-mode img {
-            filter: blur(0); /* 清晰效果 */
+            filter: blur(0);
             height: 500px;
         }
         
@@ -217,9 +222,10 @@
         }
         
         .question {
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             color: #5e35b1;
             text-align: center;
+            font-family: 'Ma Shan Zheng', cursive;
         }
         
         .buttons {
@@ -229,12 +235,13 @@
         
         .btn {
             padding: 1rem 2rem;
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             border: none;
             border-radius: 50px;
             cursor: pointer;
             transition: all 0.3s ease;
             font-weight: bold;
+            font-family: 'ZCOOL QingKe HuangYou', cursive;
         }
         
         .btn-yes {
@@ -261,9 +268,10 @@
             padding: 1rem 2rem;
             border-radius: 10px;
             box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             display: none;
             z-index: 100;
+            font-family: 'ZCOOL QingKe HuangYou', cursive;
         }
         
         .back-btn {
@@ -294,13 +302,14 @@
             left: 50%;
             transform: translate(-50%, -50%);
             color: white;
-            font-size: 2rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
             opacity: 0;
             transition: opacity 1s ease;
             z-index: 102;
             text-align: center;
             width: 80%;
+            font-family: 'Ma Shan Zheng', cursive;
         }
         
         .text-overlay.show {
@@ -329,13 +338,20 @@
             height: 400px;
         }
         
+        .input-container h2 {
+            font-size: 2.2rem;
+            font-family: 'Ma Shan Zheng', cursive;
+            color: #5e35b1;
+        }
+        
         .name-input {
             padding: 1rem 2rem;
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             border: 2px solid #5e35b1;
             border-radius: 50px;
             width: 300px;
             text-align: center;
+            font-family: 'ZCOOL XiaoWei', serif;
         }
         
         .photos-container {
@@ -351,6 +367,8 @@
             background: #f5f5f5;
             border-radius: 10px;
             overflow-y: auto;
+            font-size: 1.3rem;
+            line-height: 1.8;
         }
         
         .photo-gallery {
@@ -373,7 +391,7 @@
             opacity: 1;
         }
         
-        /* 将来页面样式 */
+        /* 将来页面样式 - 重点优化 */
         #future-page {
             display: none;
             background: rgba(255, 255, 255, 0.95);
@@ -388,61 +406,86 @@
         }
         
         .future-content {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.95);
             border-radius: 15px;
-            padding: 2rem;
-            max-width: 700px;
+            padding: 2.5rem;
+            max-width: 800px;
             margin: 0 auto;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
         
         .typing-text {
-            min-height: 200px;
-            font-size: 1.2rem;
-            line-height: 1.6;
+            min-height: 300px;
+            font-size: 2rem;
+            line-height: 1.8;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Ma Shan Zheng', cursive;
+            color: #5e35b1;
+            padding: 1.5rem;
         }
         
         .pagination {
             display: flex;
             justify-content: space-between;
             margin-top: 2rem;
+            align-items: center;
         }
         
         .page-arrow {
-            font-size: 2rem;
+            font-size: 2.5rem;
             cursor: pointer;
             color: #5e35b1;
             transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
         }
         
         .page-arrow:hover {
             transform: scale(1.2);
+            background: rgba(94, 53, 177, 0.1);
+        }
+        
+        .page-info {
+            font-size: 1.5rem;
+            color: #5e35b1;
+            font-family: 'ZCOOL QingKe HuangYou', cursive;
         }
         
         .pass-btn {
             display: block;
-            margin-left: auto;
-            margin-top: 1rem;
-            padding: 0.5rem 1.5rem;
+            margin: 2rem auto 0;
+            padding: 1rem 2.5rem;
             background: #5e35b1;
             color: white;
             border: none;
-            border-radius: 20px;
+            border-radius: 50px;
             cursor: pointer;
             transition: all 0.3s ease;
+            font-size: 1.5rem;
+            font-family: 'ZCOOL QingKe HuangYou', cursive;
         }
         
         .pass-btn:hover {
             transform: scale(1.05);
+            background: #4527a0;
         }
         
         .like-container {
             text-align: center;
             display: none;
+            padding: 2rem;
         }
         
         .like-btn {
-            font-size: 3rem;
+            font-size: 4rem;
             color: #e91e63;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -453,9 +496,10 @@
         }
         
         .like-count {
-            font-size: 2rem;
-            margin-top: 1rem;
+            font-size: 2.5rem;
+            margin-top: 1.5rem;
             color: #e91e63;
+            font-family: 'ZCOOL QingKe HuangYou', cursive;
         }
         
         /* 动画类 */
@@ -539,6 +583,23 @@
             
             .image-container.center-mode {
                 width: 95%;
+            }
+            
+            .page-title {
+                font-size: 2.2rem;
+            }
+            
+            .question {
+                font-size: 1.8rem;
+            }
+            
+            .typing-text {
+                font-size: 1.6rem;
+                min-height: 250px;
+            }
+            
+            .text-overlay {
+                font-size: 2rem;
             }
         }
     </style>
@@ -630,6 +691,7 @@
                     <div class="page-arrow" onclick="changePage(-1)">
                         <i class="fas fa-chevron-left"></i>
                     </div>
+                    <div class="page-info" id="page-info">1/5</div>
                     <div class="page-arrow" onclick="changePage(1)">
                         <i class="fas fa-chevron-right"></i>
                     </div>
@@ -702,13 +764,15 @@
                 
                 setTimeout(() => {
                     to.classList.add(animation);
+                    to.style.opacity = "1";
+                    to.style.transform = "translateY(0)";
                 }, 50);
             }, 800);
         }
         
         // 返回到主页面
         function goBackToMain() {
-            if (nowPage.style.display === 'block') {
+            if (nowPage.style.display === 'block' || getComputedStyle(nowPage).display === 'block') {
                 // 重置现在页面的状态
                 const imageContainer = document.getElementById('now-image-container');
                 const nowImage = document.getElementById('now-image');
@@ -732,25 +796,41 @@
                 pastSign.classList.remove('disabled');
                 
                 // 返回主页面
-                switchPage(nowPage, mainPage, 'fade-in');
-            } else if (pastPage.style.display === 'block') {
-                switchPage(pastPage, mainPage, 'fade-in');
-                pastUnlocked = true;
-                pastSign.classList.remove('disabled');
-                
-                // 解锁将来路牌
-                futureUnlocked = true;
-                futureSign.classList.remove('disabled');
-            } else if (futurePage.style.display === 'block') {
-                switchPage(futurePage, mainPage, 'fade-in');
-                futureUnlocked = true;
-                futureSign.classList.remove('disabled');
+                nowPage.classList.add('fade-out');
+                setTimeout(() => {
+                    nowPage.style.display = 'none';
+                    mainPage.style.display = 'block';
+                    mainPage.classList.add('fade-in');
+                }, 800);
+            } else if (pastPage.style.display === 'block' || getComputedStyle(pastPage).display === 'block') {
+                pastPage.classList.add('fade-out');
+                setTimeout(() => {
+                    pastPage.style.display = 'none';
+                    mainPage.style.display = 'block';
+                    mainPage.classList.add('fade-in');
+                    
+                    // 解锁将来路牌
+                    futureUnlocked = true;
+                    futureSign.classList.remove('disabled');
+                }, 800);
+            } else if (futurePage.style.display === 'block' || getComputedStyle(futurePage).display === 'block') {
+                futurePage.classList.add('fade-out');
+                setTimeout(() => {
+                    futurePage.style.display = 'none';
+                    mainPage.style.display = 'block';
+                    mainPage.classList.add('fade-in');
+                }, 800);
             }
         }
         
         // 前往"现在"页面
         function goToNow() {
-            switchPage(mainPage, nowPage, 'slide-in-right');
+            mainPage.classList.add('fade-out');
+            setTimeout(() => {
+                mainPage.style.display = 'none';
+                nowPage.style.display = 'block';
+                nowPage.classList.add('slide-in-right');
+            }, 800);
         }
         
         // 前往"过去"页面
@@ -759,7 +839,12 @@
                 showMessage('请先探索"现在"再探索"过去"');
                 return;
             }
-            switchPage(mainPage, pastPage, 'slide-in-left');
+            mainPage.classList.add('fade-out');
+            setTimeout(() => {
+                mainPage.style.display = 'none';
+                pastPage.style.display = 'block';
+                pastPage.classList.add('slide-in-left');
+            }, 800);
         }
         
         // 前往"将来"页面
@@ -768,8 +853,13 @@
                 showMessage('请先探索"过去"再探索"将来"');
                 return;
             }
-            switchPage(mainPage, futurePage, 'flip-in');
-            startTyping();
+            mainPage.classList.add('fade-out');
+            setTimeout(() => {
+                mainPage.style.display = 'none';
+                futurePage.style.display = 'block';
+                futurePage.classList.add('flip-in');
+                startTyping();
+            }, 800);
         }
         
         // 处理"想"按钮点击
@@ -886,7 +976,10 @@
         // 显示特定页面内容
         function showPage(pageIndex) {
             const typingText = document.getElementById('typing-text');
+            const pageInfo = document.getElementById('page-info');
+            
             typingText.innerHTML = pages[pageIndex];
+            pageInfo.textContent = `${pageIndex + 1}/${pages.length}`;
         }
         
         // 切换页面
