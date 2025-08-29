@@ -837,27 +837,9 @@
             }, 1500);
         }
         
-        // 页面切换函数
-        function switchPage(from, to, animation) {
-            from.classList.add('fade-out');
-            
-            setTimeout(() => {
-                from.style.display = 'none';
-                to.style.display = 'block';
-                
-                // 移除可能存在的动画类
-                to.classList.remove('fade-out', 'slide-in-right', 'slide-in-left', 'flip-in');
-                
-                setTimeout(() => {
-                    to.classList.add(animation);
-                    to.style.opacity = "1";
-                    to.style.transform = "translateY(0)";
-                }, 50);
-            }, 800);
-        }
-        
-        // 返回到主页面
+        // 返回到主页面 - 修复后的函数
         function goBackToMain() {
+            // 检查当前显示的页面
             if (nowPage.style.display === 'block' || getComputedStyle(nowPage).display === 'block') {
                 // 重置现在页面的状态
                 const imageContainer = document.getElementById('now-image-container');
@@ -881,30 +863,39 @@
                 pastUnlocked = true;
                 pastSign.classList.remove('disabled');
                 
-                // 返回主页面
+                // 返回主页面 - 修复这里
                 nowPage.classList.add('fade-out');
                 setTimeout(() => {
                     nowPage.style.display = 'none';
                     mainPage.style.display = 'block';
-                    mainPage.classList.add('fade-in');
+                    setTimeout(() => {
+                        mainPage.classList.remove('fade-out');
+                        mainPage.classList.add('fade-in');
+                    }, 50);
                 }, 800);
             } else if (pastPage.style.display === 'block' || getComputedStyle(pastPage).display === 'block') {
                 pastPage.classList.add('fade-out');
                 setTimeout(() => {
                     pastPage.style.display = 'none';
                     mainPage.style.display = 'block';
-                    mainPage.classList.add('fade-in');
-                    
-                    // 解锁将来路牌
-                    futureUnlocked = true;
-                    futureSign.classList.remove('disabled');
+                    setTimeout(() => {
+                        mainPage.classList.remove('fade-out');
+                        mainPage.classList.add('fade-in');
+                        
+                        // 解锁将来路牌
+                        futureUnlocked = true;
+                        futureSign.classList.remove('disabled');
+                    }, 50);
                 }, 800);
             } else if (futurePage.style.display === 'block' || getComputedStyle(futurePage).display === 'block') {
                 futurePage.classList.add('fade-out');
                 setTimeout(() => {
                     futurePage.style.display = 'none';
                     mainPage.style.display = 'block';
-                    mainPage.classList.add('fade-in');
+                    setTimeout(() => {
+                        mainPage.classList.remove('fade-out');
+                        mainPage.classList.add('fade-in');
+                    }, 50);
                 }, 800);
             }
         }
@@ -915,7 +906,10 @@
             setTimeout(() => {
                 mainPage.style.display = 'none';
                 nowPage.style.display = 'block';
-                nowPage.classList.add('slide-in-right');
+                setTimeout(() => {
+                    nowPage.classList.remove('fade-out');
+                    nowPage.classList.add('slide-in-right');
+                }, 50);
             }, 800);
         }
         
@@ -929,7 +923,10 @@
             setTimeout(() => {
                 mainPage.style.display = 'none';
                 pastPage.style.display = 'block';
-                pastPage.classList.add('slide-in-left');
+                setTimeout(() => {
+                    pastPage.classList.remove('fade-out');
+                    pastPage.classList.add('slide-in-left');
+                }, 50);
             }, 800);
         }
         
@@ -943,8 +940,11 @@
             setTimeout(() => {
                 mainPage.style.display = 'none';
                 futurePage.style.display = 'block';
-                futurePage.classList.add('flip-in');
-                startTyping();
+                setTimeout(() => {
+                    futurePage.classList.remove('fade-out');
+                    futurePage.classList.add('flip-in');
+                    startTyping();
+                }, 50);
             }, 800);
         }
         
