@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>开学自我介绍 - 石明娟</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=ZCOOL+QingKe+HuangYou&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;700&family=ZCOOL+QingKe+HuangYou&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -21,7 +21,7 @@
             align-items: center;
             overflow: hidden;
             color: #37474f;
-            font-family: 'ZCOOL XiaoWei', serif;
+            font-family: 'Noto Serif SC', serif;
         }
         
         .container {
@@ -406,12 +406,12 @@
         }
         
         .future-content {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.97);
             border-radius: 15px;
             padding: 2.5rem;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
             min-height: 500px;
             display: flex;
             flex-direction: column;
@@ -419,23 +419,50 @@
         }
         
         .typing-text {
-            min-height: 300px;
-            font-size: 2rem;
-            line-height: 1.8;
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Ma Shan Zheng', cursive;
+            min-height: 400px;
+            max-height: 500px;
+            overflow-y: auto;
+            font-size: 1.5rem;
+            line-height: 1.9;
+            text-align: left;
+            padding: 1.8rem;
+            font-family: 'Noto Serif SC', serif;
+            color: #2c3e50;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 1.5rem;
+        }
+        
+        .typing-text h3 {
             color: #5e35b1;
-            padding: 1.5rem;
+            margin: 1.5rem 0 0.8rem 0;
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 1.8rem;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 0.5rem;
+        }
+        
+        .typing-text p {
+            margin-bottom: 1.2rem;
+            text-indent: 2em;
+        }
+        
+        .typing-text ul {
+            margin: 0.8rem 0;
+            padding-left: 2.5rem;
+        }
+        
+        .typing-text li {
+            margin-bottom: 0.6rem;
         }
         
         .pagination {
             display: flex;
             justify-content: space-between;
-            margin-top: 2rem;
             align-items: center;
+            margin-top: 1.5rem;
+            padding: 0 1rem;
         }
         
         .page-arrow {
@@ -443,9 +470,10 @@
             cursor: pointer;
             color: #5e35b1;
             transition: all 0.3s ease;
-            padding: 0.5rem 1rem;
-            background: rgba(255, 255, 255, 0.8);
+            padding: 0.8rem 1.2rem;
+            background: rgba(255, 255, 255, 0.9);
             border-radius: 50%;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
         }
         
         .page-arrow:hover {
@@ -454,16 +482,19 @@
         }
         
         .page-info {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             color: #5e35b1;
             font-family: 'ZCOOL QingKe HuangYou', cursive;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
         }
         
         .pass-btn {
             display: block;
             margin: 2rem auto 0;
             padding: 1rem 2.5rem;
-            background: #5e35b1;
+            background: linear-gradient(135deg, #5e35b1, #4527a0);
             color: white;
             border: none;
             border-radius: 50px;
@@ -471,11 +502,12 @@
             transition: all 0.3s ease;
             font-size: 1.5rem;
             font-family: 'ZCOOL QingKe HuangYou', cursive;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
         
         .pass-btn:hover {
             transform: scale(1.05);
-            background: #4527a0;
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.3);
         }
         
         .like-container {
@@ -558,6 +590,25 @@
             }
         }
         
+        /* 自定义滚动条 */
+        .typing-text::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .typing-text::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+        }
+        
+        .typing-text::-webkit-scrollbar-thumb {
+            background: #5e35b1;
+            border-radius: 10px;
+        }
+        
+        .typing-text::-webkit-scrollbar-thumb:hover {
+            background: #4527a0;
+        }
+        
         /* 响应式设计 */
         @media (max-width: 768px) {
             .now-container {
@@ -594,12 +645,22 @@
             }
             
             .typing-text {
-                font-size: 1.6rem;
-                min-height: 250px;
+                font-size: 1.4rem;
+                min-height: 350px;
+                max-height: 400px;
+                padding: 1.2rem;
             }
             
             .text-overlay {
                 font-size: 2rem;
+            }
+            
+            .future-content {
+                padding: 1.5rem;
+            }
+            
+            .typing-text h3 {
+                font-size: 1.6rem;
             }
         }
     </style>
@@ -653,23 +714,16 @@
             
             <div class="photos-container" id="photos-container">
                 <div class="text-content">
-                    <p>我生长在安徽省安庆市宿松县许岭镇。
-
-说是鱼米之乡，可少了点江南的温婉。若说是北方的豪爽，那却也谈不上。同中国许多普通的小镇一样，许岭似乎没有什么说得出口的特色。街道里的烧饼香，小巷口的霞光，河坝上被风吹动的树影，街坊邻居的嬉笑怒骂。而我，就生活在这样的小镇，这样平凡的时光褶皱里。
-
-镇上的人，活得像土地一样具体。他们不信虚的，只信手里的茧，信碗里的饭，信能供出一个名牌大学生来，就是最大的体面。他们的善良和计较，都明晃晃地摆在日头下，晒得滚烫。
-
-而我的家，我的父母，便是这个小镇最凝练的注解。妈妈喜欢唠叨，脾气有点急，有点犟，但屋里屋外的事都理得井井有条。爸爸时常是笑着，大嗓门与人谈论着什么，哪家哪户新娶了媳妇，进了新屋，都会引起他一阵笑。他们在被生活所俘虏的同时，也在真正地生活。
-
-而我，是从许岭的泥土里，长出来的一株庄稼。我的根，须须蔓蔓，牢牢地抓着那三条街，两条巷，抓着那片又浑又黄的水。
-
-从许岭到珞珈山，有二百二十多公里。这是我用笔尖，一步一步丈量出来的。
-
-浪浪山的小妖怪，从山里走了出来。
-但焉知，这里不会是另一座浪浪山。
-
-因此，我永远不会抵达。
-我也永远不会停下。</p>
+                    <p>我生长在安徽省安庆市宿松县许岭镇。</p>
+                    <p>说是鱼米之乡，可少了点江南的温婉。若说是北方的豪爽，那却也谈不上。同中国许多普通的小镇一样，许岭似乎没有什么说得出口的特色。街道里的烧饼香，小巷口的霞光，河坝上被风吹动的树影，街坊邻居的嬉笑怒骂。而我，就生活在这样的小镇，这样平凡的时光褶皱里。</p>
+                    <p>镇上的人，活得像土地一样具体。他们不信虚的，只信手里的茧，信碗里的饭，信能供出一个名牌大学生来，就是最大的体面。他们的善良和计较，都明晃晃地摆在日头下，晒得滚烫。</p>
+                    <p>而我的家，我的父母，便是这个小镇最凝练的注解。妈妈喜欢唠叨，脾气有点急，有点犟，但屋里屋外的事都理得井井有条。爸爸时常是笑着，大嗓门与人谈论着什么，哪家哪户新娶了媳妇，进了新屋，都会引起他一阵笑。他们在被生活所俘虏的同时，也在真正地生活。</p>
+                    <p>而我，是从许岭的泥土里，长出来的一株庄稼。我的根，须须蔓蔓，牢牢地抓着那三条街，两条巷，抓着那片又浑又黄的水。</p>
+                    <p>从许岭到珞珈山，有二百二十多公里。这是我用笔尖，一步一步丈量出来的。</p>
+                    <p>浪浪山的小妖怪，从山里走了出来。<br>
+                    但焉知，这里不会是另一座浪浪山。</p>
+                    <p>因此，我永远不会抵达。<br>
+                    我也永远不会停下。</p>
                 </div>
                 <div class="photo-gallery">
                     <img src="images/B.jpg" class="gallery-img" alt="过去照片1">
@@ -733,11 +787,43 @@
         let likeCount = 0;
         
         const pages = [
-            "刚刚是正经的说",
-            "现在是更正经的事",
-            "我想要在武大认识好多朋友，男女通吃的那种",
-            "我想要和一群朋友拍很多照片和视频",
-            "我想要老了之后，想到武大第一个想到的是我的朋友们"
+            `写下这部分时，我怀着对未来的无限憧憬和一份清醒的认知。大学对我而言，不仅仅是一个新的校园，更是一个全新的起点，一次深刻的自我探索之旅。我期待在这里扎根，然后生长。`,
+            
+            `<h3>对大学及辅导员老师的期待</h3>
+            <p>对我向往的大学生活：我期待大学是一个"拥有无限可能的地方"。我渴望这里的图书馆、实验室和讲座，能让我系统地构建起专业知识的大厦。但我同样渴望这里的社团、竞赛和志愿活动，能让我跳出舒适圈，触摸到世界的多样性和生命的广度。我期待这里的氛围是包容和自由的，允许我成功，也宽容我试错，让我在不断的尝试中，真正找到心中所爱、所长、所向。</p>
+            <p>对我尊敬的辅导员老师：坦白说，在我心中，辅导员老师是我们在大学这个"新家"的"大家长"和"引路人"。我期待您不仅能为我们解读政策、规划学业，更能在我们面临选择感到迷茫时，用您的经验为我们拨开迷雾；在我们遇到挫折心灰意冷时，用您的鼓励给我们前行的力量。</p>`,
+            
+            `<h3>大学展望与个人规划（我的行动蓝图）</h3>
+            <p>空有期待只是空想，我愿用切实的行动为之奋斗。我初步为自己勾勒了四年的蓝图，并深知它需要在实践中动态调整：</p>
+            <p><strong>大一［探索与适应之年］：</strong></p>
+            <ul>
+                <li><strong>学业上：</strong>我的首要任务是扎实打好专业基础，绝不让任何一门基础课"掉队"。我会主动了解本专业的培养方案和发展方向，找到兴趣点。目标是保持优良的绩点，为未来选择打下基础。</li>
+                <li><strong>能力上：</strong>我计划加入1-2个真正感兴趣的社团，不是为了凑数，而是为了深度参与，学习团队协作和组织策划。我会勇敢地参加各类讲座和新生比赛，不在乎名次，重在体验和突破自我。</li>
+                <li><strong>生活上：</strong>积极融入班集体，主动认识新同学，学会独立管理所有生活事务，合理安排时间，找到学习、社团和休闲之间的平衡。</li>
+            </ul>`,
+            
+            `<p><strong>大二［深化与拓展之年］：</strong></p>
+            <ul>
+                <li><strong>学业上：</strong>在专业课上深入钻研，开始有意识地阅读专业领域的前沿文章或书籍。目标是通过英语四级/六级，并开始学习一项与专业相关的硬技能。</li>
+                <li><strong>能力上：</strong>尝试竞选社团干部或班委，承担更多责任，锻炼领导力和解决实际问题的能力。寻找社会实践或志愿者机会，触摸真实的社会脉搏。</li>
+                <li><strong>生活上：</strong>开始思考未来的发展方向（考研、留学还是就业），并据此初步探索相关信息。</li>
+            </ul>
+            <p><strong>大三［定位与抉择之年］：</strong></p>
+            <ul>
+                <li><strong>学业上：</strong>这是关键一年。我将聚焦于专业核心课程，力争取得优异成绩。如果选择考研，这将是我开始系统复习的时期；如果选择就业，我将积极寻找高质量的对口实习。</li>
+                <li><strong>能力上：</strong>积极参与老师的科研项目或学科竞赛，提升自己的创新和实践能力。不断打磨自己的简历和面试技巧。</li>
+            </ul>`,
+            
+            `<p><strong>大四［冲刺与收获之年］：</strong></p>
+            <ul>
+                <li><strong>学业上：</strong>高质量完成毕业论文/设计，为大学学业画上圆满句号。</li>
+                <li><strong>未来上：</strong>全力为实现下一步目标做最后冲刺，从容、自信地迎接人生新阶段。</li>
+            </ul>
+            <h3>四年后的我——我期望的模样</h3>
+            <p>四年后，当我身穿学士服站在毕业典礼上时，我希望回首这四年，我可以无愧于心。我希望我收获的不仅仅是一纸文凭和一份offer，更是一份成熟的心智、独立的人格和解决问题的能力。</p>
+            <p>我希望自己眼中有光，脚下有路。对未来的方向有清晰的规划，并对即将面临的挑战充满信心而非恐惧。</p>
+            <p>我希望自己成了一个更有温度、更有责任感的人。懂得感恩父母的养育、老师的教诲和朋友的陪伴，并愿意用自己的力量去回馈社会。</p>
+            <p>最终，我希望大学四年赋予我的，是"锚定人生的力量"——无论风雨，我都知道自己是谁，想做什么，并能坚定不移地走下去。</p>`
         ];
         
         // 显示消息
@@ -954,7 +1040,7 @@
             const typingText = document.getElementById('typing-text');
             typingText.innerHTML = '';
             
-            const text = "大家好，我是石明娟，很高兴在这里与大家相遇。我期待在未来的日子里，能够与大家一起学习、一起成长，共同创造美好的大学回忆。";
+            const text = "下面是我对大学生活的展望和规划，请按左右箭头翻阅...";
             let index = 0;
             
             function type() {
@@ -980,6 +1066,9 @@
             
             typingText.innerHTML = pages[pageIndex];
             pageInfo.textContent = `${pageIndex + 1}/${pages.length}`;
+            
+            // 自动滚动到顶部
+            typingText.scrollTop = 0;
         }
         
         // 切换页面
